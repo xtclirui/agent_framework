@@ -1,0 +1,4 @@
+# Core framework has no runtime dependencies
+# Development dependencies
+pytest>=7.0.0
+pytest-cov>=4.0.0
