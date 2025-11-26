@@ -118,9 +118,9 @@ const file_agent_framework_proto_rawDesc = "" +
 	"\aRequest\x12\x14\n" +
 	"\x05query\x18\x01 \x01(\tR\x05query\"\x1c\n" +
 	"\bResponse\x12\x10\n" +
-	"\x03msg\x18\x01 \x01(\tR\x03msg2G\n" +
-	"\aService\x12<\n" +
-	"\x05Hello\x12\x18.agent_framework.Request\x1a\x19.agent_framework.ResponseB%Z#github.com/xtclirui/agent_frameworkb\x06proto3"
+	"\x03msg\x18\x01 \x01(\tR\x03msg2J\n" +
+	"\x06Intent\x12@\n" +
+	"\trecognize\x12\x18.agent_framework.Request\x1a\x19.agent_framework.ResponseB%Z#github.com/xtclirui/agent_frameworkb\x06proto3"
 
 var (
 	file_agent_framework_proto_rawDescOnce sync.Once
@@ -140,8 +140,8 @@ var file_agent_framework_proto_goTypes = []any{
 	(*Response)(nil), // 1: agent_framework.Response
 }
 var file_agent_framework_proto_depIdxs = []int32{
-	0, // 0: agent_framework.Service.Hello:input_type -> agent_framework.Request
-	1, // 1: agent_framework.Service.Hello:output_type -> agent_framework.Response
+	0, // 0: agent_framework.Intent.recognize:input_type -> agent_framework.Request
+	1, // 1: agent_framework.Intent.recognize:output_type -> agent_framework.Response
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

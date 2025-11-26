@@ -129,8 +129,7 @@ trpc create -p agent_framework.proto -o pb --rpconly
 **参数说明**：
 - `-p`: 指定Protobuf文件路径
 - `-o`: 指定输出目录
-- `--rpconly`: 仅生成RPC相关代码，不生成HTTP相关代码
-
+- 
 ### 验证安装
 
 安装完成后，可以通过以下命令验证trpc工具是否安装成功：

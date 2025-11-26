@@ -12,6 +12,6 @@ message Response {
   string msg = 1;
 }
 
-service Service {
-  rpc Hello(Request) returns(Response);
+service Intent {
+  rpc recognize(Request) returns(Response);
 }

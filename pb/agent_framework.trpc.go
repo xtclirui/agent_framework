@@ -17,19 +17,19 @@ import (
 
 // START ======================================= Server Service Definition ======================================= START
 
-// ServiceService defines service.
-type ServiceService interface {
-	Hello(ctx context.Context, req *Request) (*Response, error)
+// IntentService defines service.
+type IntentService interface {
+	Recognize(ctx context.Context, req *Request) (*Response, error)
 }
 
-func ServiceService_Hello_Handler(svr interface{}, ctx context.Context, f server.FilterFunc) (interface{}, error) {
+func IntentService_Recognize_Handler(svr interface{}, ctx context.Context, f server.FilterFunc) (interface{}, error) {
 	req := &Request{}
 	filters, err := f(req)
 	if err != nil {
 		return nil, err
 	}
 	handleFunc := func(ctx context.Context, reqbody interface{}) (interface{}, error) {
-		return svr.(ServiceService).Hello(ctx, reqbody.(*Request))
+		return svr.(IntentService).Recognize(ctx, reqbody.(*Request))
 	}
 
 	var rsp interface{}
@@ -40,31 +40,31 @@ func ServiceService_Hello_Handler(svr interface{}, ctx context.Context, f server
 	return rsp, nil
 }
 
-// ServiceServer_ServiceDesc descriptor for server.RegisterService.
-var ServiceServer_ServiceDesc = server.ServiceDesc{
-	ServiceName: "agent_framework.Service",
-	HandlerType: ((*ServiceService)(nil)),
+// IntentServer_ServiceDesc descriptor for server.RegisterService.
+var IntentServer_ServiceDesc = server.ServiceDesc{
+	ServiceName: "agent_framework.Intent",
+	HandlerType: ((*IntentService)(nil)),
 	Methods: []server.Method{
 		{
-			Name: "/agent_framework.Service/Hello",
-			Func: ServiceService_Hello_Handler,
+			Name: "/agent_framework.Intent/recognize",
+			Func: IntentService_Recognize_Handler,
 		},
 	},
 }
 
-// RegisterServiceService registers service.
-func RegisterServiceService(s server.Service, svr ServiceService) {
-	if err := s.Register(&ServiceServer_ServiceDesc, svr); err != nil {
-		panic(fmt.Sprintf("Service register error:%v", err))
+// RegisterIntentService registers service.
+func RegisterIntentService(s server.Service, svr IntentService) {
+	if err := s.Register(&IntentServer_ServiceDesc, svr); err != nil {
+		panic(fmt.Sprintf("Intent register error:%v", err))
 	}
 }
 
 // START --------------------------------- Default Unimplemented Server Service --------------------------------- START
 
-type UnimplementedService struct{}
+type UnimplementedIntent struct{}
 
-func (s *UnimplementedService) Hello(ctx context.Context, req *Request) (*Response, error) {
-	return nil, errors.New("rpc Hello of service Service is not implemented")
+func (s *UnimplementedIntent) Recognize(ctx context.Context, req *Request) (*Response, error) {
+	return nil, errors.New("rpc Recognize of service Intent is not implemented")
 }
 
 // END --------------------------------- Default Unimplemented Server Service --------------------------------- END
@@ -73,29 +73,29 @@ func (s *UnimplementedService) Hello(ctx context.Context, req *Request) (*Respon
 
 // START ======================================= Client Service Definition ======================================= START
 
-// ServiceClientProxy defines service client proxy
-type ServiceClientProxy interface {
-	Hello(ctx context.Context, req *Request, opts ...client.Option) (rsp *Response, err error)
+// IntentClientProxy defines service client proxy
+type IntentClientProxy interface {
+	Recognize(ctx context.Context, req *Request, opts ...client.Option) (rsp *Response, err error)
 }
 
-type ServiceClientProxyImpl struct {
+type IntentClientProxyImpl struct {
 	client client.Client
 	opts   []client.Option
 }
 
-var NewServiceClientProxy = func(opts ...client.Option) ServiceClientProxy {
-	return &ServiceClientProxyImpl{client: client.DefaultClient, opts: opts}
+var NewIntentClientProxy = func(opts ...client.Option) IntentClientProxy {
+	return &IntentClientProxyImpl{client: client.DefaultClient, opts: opts}
 }
 
-func (c *ServiceClientProxyImpl) Hello(ctx context.Context, req *Request, opts ...client.Option) (*Response, error) {
+func (c *IntentClientProxyImpl) Recognize(ctx context.Context, req *Request, opts ...client.Option) (*Response, error) {
 	ctx, msg := codec.WithCloneMessage(ctx)
 	defer codec.PutBackMessage(msg)
-	msg.WithClientRPCName("/agent_framework.Service/Hello")
-	msg.WithCalleeServiceName(ServiceServer_ServiceDesc.ServiceName)
+	msg.WithClientRPCName("/agent_framework.Intent/recognize")
+	msg.WithCalleeServiceName(IntentServer_ServiceDesc.ServiceName)
 	msg.WithCalleeApp("")
 	msg.WithCalleeServer("")
-	msg.WithCalleeService("Service")
-	msg.WithCalleeMethod("Hello")
+	msg.WithCalleeService("Intent")
+	msg.WithCalleeMethod("Recognize")
 	msg.WithSerializationType(codec.SerializationTypePB)
 	callopts := make([]client.Option, 0, len(c.opts)+len(opts))
 	callopts = append(callopts, c.opts...)

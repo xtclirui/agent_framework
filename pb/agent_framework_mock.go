@@ -17,93 +17,93 @@ import (
 	client "trpc.group/trpc-go/trpc-go/client"
 )
 
-// MockServiceService is a mock of ServiceService interface.
-type MockServiceService struct {
+// MockIntentService is a mock of IntentService interface.
+type MockIntentService struct {
 	ctrl     *gomock.Controller
-	recorder *MockServiceServiceMockRecorder
+	recorder *MockIntentServiceMockRecorder
 }
 
-// MockServiceServiceMockRecorder is the mock recorder for MockServiceService.
-type MockServiceServiceMockRecorder struct {
-	mock *MockServiceService
+// MockIntentServiceMockRecorder is the mock recorder for MockIntentService.
+type MockIntentServiceMockRecorder struct {
+	mock *MockIntentService
 }
 
-// NewMockServiceService creates a new mock instance.
-func NewMockServiceService(ctrl *gomock.Controller) *MockServiceService {
-	mock := &MockServiceService{ctrl: ctrl}
-	mock.recorder = &MockServiceServiceMockRecorder{mock}
+// NewMockIntentService creates a new mock instance.
+func NewMockIntentService(ctrl *gomock.Controller) *MockIntentService {
+	mock := &MockIntentService{ctrl: ctrl}
+	mock.recorder = &MockIntentServiceMockRecorder{mock}
 	return mock
 }
 
 // EXPECT returns an object that allows the caller to indicate expected use.
-func (m *MockServiceService) EXPECT() *MockServiceServiceMockRecorder {
+func (m *MockIntentService) EXPECT() *MockIntentServiceMockRecorder {
 	return m.recorder
 }
 
 // ISGOMOCK indicates that this struct is a gomock mock.
-func (m *MockServiceService) ISGOMOCK() struct{} {
+func (m *MockIntentService) ISGOMOCK() struct{} {
 	return struct{}{}
 }
 
-// Hello mocks base method.
-func (m *MockServiceService) Hello(ctx context.Context, req *Request) (*Response, error) {
+// Recognize mocks base method.
+func (m *MockIntentService) Recognize(ctx context.Context, req *Request) (*Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Hello", ctx, req)
+	ret := m.ctrl.Call(m, "Recognize", ctx, req)
 	ret0, _ := ret[0].(*Response)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// Hello indicates an expected call of Hello.
-func (mr *MockServiceServiceMockRecorder) Hello(ctx, req any) *gomock.Call {
+// Recognize indicates an expected call of Recognize.
+func (mr *MockIntentServiceMockRecorder) Recognize(ctx, req any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Hello", reflect.TypeOf((*MockServiceService)(nil).Hello), ctx, req)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Recognize", reflect.TypeOf((*MockIntentService)(nil).Recognize), ctx, req)
 }
 
-// MockServiceClientProxy is a mock of ServiceClientProxy interface.
-type MockServiceClientProxy struct {
+// MockIntentClientProxy is a mock of IntentClientProxy interface.
+type MockIntentClientProxy struct {
 	ctrl     *gomock.Controller
-	recorder *MockServiceClientProxyMockRecorder
+	recorder *MockIntentClientProxyMockRecorder
 }
 
-// MockServiceClientProxyMockRecorder is the mock recorder for MockServiceClientProxy.
-type MockServiceClientProxyMockRecorder struct {
-	mock *MockServiceClientProxy
+// MockIntentClientProxyMockRecorder is the mock recorder for MockIntentClientProxy.
+type MockIntentClientProxyMockRecorder struct {
+	mock *MockIntentClientProxy
 }
 
-// NewMockServiceClientProxy creates a new mock instance.
-func NewMockServiceClientProxy(ctrl *gomock.Controller) *MockServiceClientProxy {
-	mock := &MockServiceClientProxy{ctrl: ctrl}
-	mock.recorder = &MockServiceClientProxyMockRecorder{mock}
+// NewMockIntentClientProxy creates a new mock instance.
+func NewMockIntentClientProxy(ctrl *gomock.Controller) *MockIntentClientProxy {
+	mock := &MockIntentClientProxy{ctrl: ctrl}
+	mock.recorder = &MockIntentClientProxyMockRecorder{mock}
 	return mock
 }
 
 // EXPECT returns an object that allows the caller to indicate expected use.
-func (m *MockServiceClientProxy) EXPECT() *MockServiceClientProxyMockRecorder {
+func (m *MockIntentClientProxy) EXPECT() *MockIntentClientProxyMockRecorder {
 	return m.recorder
 }
 
 // ISGOMOCK indicates that this struct is a gomock mock.
-func (m *MockServiceClientProxy) ISGOMOCK() struct{} {
+func (m *MockIntentClientProxy) ISGOMOCK() struct{} {
 	return struct{}{}
 }
 
-// Hello mocks base method.
-func (m *MockServiceClientProxy) Hello(ctx context.Context, req *Request, opts ...client.Option) (*Response, error) {
+// Recognize mocks base method.
+func (m *MockIntentClientProxy) Recognize(ctx context.Context, req *Request, opts ...client.Option) (*Response, error) {
 	m.ctrl.T.Helper()
 	varargs := []any{ctx, req}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
-	ret := m.ctrl.Call(m, "Hello", varargs...)
+	ret := m.ctrl.Call(m, "Recognize", varargs...)
 	ret0, _ := ret[0].(*Response)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// Hello indicates an expected call of Hello.
-func (mr *MockServiceClientProxyMockRecorder) Hello(ctx, req any, opts ...any) *gomock.Call {
+// Recognize indicates an expected call of Recognize.
+func (mr *MockIntentClientProxyMockRecorder) Recognize(ctx, req any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]any{ctx, req}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Hello", reflect.TypeOf((*MockServiceClientProxy)(nil).Hello), varargs...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Recognize", reflect.TypeOf((*MockIntentClientProxy)(nil).Recognize), varargs...)
 }
