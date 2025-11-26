@@ -1,0 +1,17 @@
+syntax = "proto3";
+package agent_framework;
+
+option go_package = "github.com/xtclirui/agent_framework";
+
+
+message Request {
+  string query = 1;
+}
+
+message Response {
+  string msg = 1;
+}
+
+service Service {
+  rpc Hello(Request) returns(Response);
+}
