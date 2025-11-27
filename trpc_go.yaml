@@ -3,8 +3,8 @@ global:  # Global configuration.
   env_name: test  # Environment name for non-production environments.
 
 server:  # Server configuration.
-  app: yourAppName  # Application name for the business.
-  server: Service  # Process server name.
+  app: agent  # Application name for the business.
+  server: home  # Process server name.
   bin_path: /usr/local/trpc/bin/  # Path to binary executable files and framework configuration files.
   conf_path: /usr/local/trpc/conf/  # Path to business configuration files.
   data_path: /usr/local/trpc/data/  # Path to business data files.
@@ -12,7 +12,7 @@ server:  # Server configuration.
     - simpledebuglog
     - recovery  # Intercept panics from business processing goroutines created by the framework.
   service:  # Services provided by the business, can have multiple.
-    - name: agent_framework.Service  # Route name for the service.
+    - name: trpc.agent.home.Intent  # Route name for the service.
       ip: 127.0.0.1  # Service listening IP address, can use placeholder ${ip}. Use either ip or nic, ip takes priority.
       # nic: eth0
       port: 8000  # Service listening port, can use placeholder ${port}.
